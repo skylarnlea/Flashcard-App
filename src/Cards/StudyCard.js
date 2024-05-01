@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-
-
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function StudyCard({ deck }) {
   const navigate = useNavigate();
   const { deckId } = useParams();
   const [count, setCount] = useState(0);
+  const { cards } = deck || {};
   const [cardFront, setCardFront] = useState(true);
-  const [currentCard, setCurrentCard] = useState([]);
-  const cardList = deck?.cards;
+  const cardList = cards || [];
   
-
   useEffect(() => {
     const abortController = new AbortController();
-    setCurrentCard(cardList[count]);
-
+    // setCurrentCard(cardList[count]);
+    
     return () => {
-        abortController.abort();
+      abortController.abort();
     }
   }, [cardList, count]);
-
   
   const handleFlip = () => {
     if (cardFront) {
@@ -39,14 +35,14 @@ function StudyCard({ deck }) {
     }
   };
   
-  if (cardList?.length > 2) {
+  if (cardList.length > 2) {
     return (
             <div className="card">
               <div className="card-body">
                 <div className="card-title">
                   <h5>Card {count + 1} of {cardList.length}</h5>
                   <div className="card-text">
-                    <p>{cardFront ? currentCard.front : currentCard.back}</p>
+                    <p>{cardFront ? cardList[count].front : cardList[count].back}</p>
                     
                     <button 
                       type="button" 
@@ -79,16 +75,15 @@ function StudyCard({ deck }) {
                 <h4 className="text-danger font-weight-bold">Not enough cards.</h4>
                 
                 <div className="card-text">
-                  <p>You need at least 3 cards to study. There are 2 cards in this deck.</p>
+                  <p>You need at least 3 cards to study. There are {cardList.length} cards in this deck.</p>
                 </div>
                 
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  onClick={() => navigate(`/decks/${deckId}/cards/new`)}
+                <Link
+                  className="btn btn-primary"
+                  to={`/decks/${deckId}/cards/new`}
                 >
                   <span className="oi oi-plus" /> Add Cards
-                </button>
+                </Link>
               </div>
           </div>
         </div>

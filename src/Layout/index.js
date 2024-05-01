@@ -32,7 +32,7 @@ function Layout() {
             
             <Route path="/decks/:deckId/cards/:cardId/edit" element={<EditCard />}></Route>
 
-            <Route path="/NotFound" element={<NotFound />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
       </div>
     </>
