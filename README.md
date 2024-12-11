@@ -34,4 +34,4 @@ Running on Windows
 If you are having problems running npm start on Windows, you may need to run the React client and server in separate terminals. 
 Open a terminal and run `npm run start:react` to start the react application. Open another terminal and run `npm run start:server` to run the server.
 
-![Screenshot of the application](images/Screenshot 2024-12-10 at 8.47.19 PM.png)
+![Screenshot of the application](images/FlashcardApp.png)
