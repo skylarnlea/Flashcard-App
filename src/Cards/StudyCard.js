@@ -9,6 +9,7 @@ function StudyCard({ deck }) {
   const [cardFront, setCardFront] = useState(true);
   const cardList = cards || [];
   
+  // eslint-disable-next-line
   useEffect(() => {
     const abortController = new AbortController();
     // setCurrentCard(cardList[count]);
